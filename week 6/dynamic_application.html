@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dynamic Application</title>
+  </head>
+
+  <body onload="greet()">
+    <p>Hello World</p>
+
+    <button onclick="alert('Hello World')">Click me</button>
+
+    <p id="text">This is my first HTML, CSS and Javascript Fusion</p>
+
+    <button
+      onclick="document.getElementById('text').innerHTML='I am texting inline Javascript' "
+    >
+      Change Text
+    </button>
+    <button id="click">Internal Javascript Click</button>
+    <script>
+      function greet() {
+        alert("Welcome to the dynamic World");
+      }
+      document.getElementById('click').onclick = function(){
+        alert('Button was clicked')
+      }
+    </script>
+  </body>
+</html>
