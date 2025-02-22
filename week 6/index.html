@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dynamic Application</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./action.js"></script>
+  </head>
+
+  <body onload="greet()">
+    <p>Hello World</p>
+
+    <button onclick="alert('Hello World')">Click me</button>
+
+    <p id="text">This is my first HTML, CSS and Javascript Fusion</p>
+
+    <input type="text" id="colorInput" placeholder="Enter color name or code" />
+    <button onclick="changeBackgroundColor()">Change backgroundColor</button>
+    <button id="bgChangeButton">backgroundColor</button>
+    <p id="errorMsg" style="color: red"></p>
+
+    <script>
+      // Function to generate a random color(hexadecimal color code)
+      function getRandomColor() {
+        const randomColor =
+          "#" + Math.floor(Math.random() * 16777215).toString(16);
+        return randomColor;
+      }
+
+      // Function to change the background color
+      function changeBackgroundColor() {
+        document.body.style.backgroundColor = getRandomColor();
+      }
+
+      document.getElementById("bgChangeButton").onclick = function () {
+        let colorInput = document.getElementById("colorInput").value.trim();
+        if (colorInput === "") {
+          colorInput = "lightgray";
+        }
+        const isValidColor = isValidCSSColor(colorInput);
+
+        if (isValidColor) {
+          document.body.style.backgroundColor = colorInput;
+          document.getElementById("errorMsg").textContent = ""; // Clear error message
+        } else {
+          document.getElementById("errorMsg").textContent = "Invalid color!";
+        }
+      };
+
+      // Function to validate if a color is valid in CSS
+      function isValidCSSColor(color) {
+        const tempElement = document.createElement("div");
+        tempElement.style.color = color;
+        return tempElement.style.color !== "";
+      }
+    </script>
+    <!--<button
+      onclick="document.getElementById('text').innerHTML='I am texting inline Javascript' "
+    >Change Text</button>-->
+    <button id="textChangeButton">Change Text</button>
+    <button id="click">Internal Javascript Click</button>
+
+    <script>
+      function greet() {
+        alert("Welcome to the dynamic World");
+      }
+
+      let isTextChanged = false; // Track text state
+
+      document.getElementById("textChangeButton").onclick = function () {
+        const textElement = document.getElementById("text");
+        if (isTextChanged) {
+          textElement.innerHTML =
+            "This is my first HTML, CSS and Javascript Fusion";
+          isTextChanged = false;
+        } else {
+          textElement.innerHTML = "I am texting inline Javascript";
+          isTextChanged = true;
+        }
+      };
+
+      /*
+      document.getElementById('click').onclick = function(){
+        alert('Button was clicked')
+      }
+      document.getElementById("click").onmouseover = function(){
+        document.getElementById("click").style.color ='red'
+      }
+      document.getElementById("click").onmouseout = function(){
+        document.getElementById("click").style.color ="yellow"
+    }
+*/
+
+      const button = document.getElementById("click");
+      button.onclick = function () {
+        alert("Button was clicked");
+      };
+      button.onmouseover = function () {
+        document.getElementById("click").style.color = "red";
+      };
+      button.onmouseout = function () {
+        document.getElementById("click").style.color = "yellow";
+      };
+    </script>
+
+    <input type="color" id="colorPicker" />
+    <button id="ChangeButton">Change Background</button>
+    <p id="errorMsg" style="color: red"></p>
+
+    <script>
+      document.getElementById("ChangeButton").onclick = function () {
+        const colorInput = document.getElementById("colorPicker").value;
+        document.body.style.backgroundColor = colorInput;
+        document.getElementById("errorMsg").textContent = ""; // No error needed
+      };
+    </script>
+  </body>
+</html>
